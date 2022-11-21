@@ -1,1 +1,6 @@
-// Specific CSS for your home-page
+.grid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit,minmax(150px,215px));
+  grid-gap: 1rem;
+}
