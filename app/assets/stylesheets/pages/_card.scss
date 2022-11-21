@@ -1,0 +1,45 @@
+// Specific CSS for your home-page
+.card {
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  margin: 10px auto;
+  overflow: hidden;
+  width: 215px;
+  height: 385px;
+}
+
+.card > img {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-infos {
+  padding: 16px;
+}
+
+.card-pricing {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+.text-card {
+  height: 110px;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
