@@ -1,0 +1,55 @@
+<%= link_to "New instrument", new_instrument_path if policy(Instrument).new? %>
+
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <%= link_to "results", class: "navbar-brand" do %>
+      <%= image_tag "navbar_logo.png" %>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <%# if user_signed_in? %>
+          <li class="nav-item active">
+          <%= link_to "Rent", "#", class: "btn btn-ghost" %>
+
+          </li>
+          <li class="nav-item dropdown">
+            <%= image_tag "avatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Action", "#", class: "dropdown-item" %>
+              <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
+            </div>
+          </li>
+        <%# else %>
+          <!--li class="nav-item"-->
+            <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <!--/li-->
+        <%# end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/title-center'%>
+
+<div class="grid">
+    <% @instruments.each do |instrument| %>
+
+    <div class="card">
+  <img src="https://www.gimplearn.net/fun.php?q=<%=instrument.name%>" />
+  <div class="card-infos">
+    <div>
+      <h2><%= instrument.name %></h2>
+      <div class="text-card">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse  rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectrem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor</p>
+      </div><br>
+      <h2 class="card-pricing">€<%= instrument.price %></h2>
+    </div>
+  </div>
+</div>
+ <% end %>
+</div>

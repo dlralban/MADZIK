@@ -1,0 +1,23 @@
+<div class="grid">
+  <% @rentals.each do |rental| %>
+    <% instrument = Instrument.find(rental.instrument_id)  %>
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/813oDnJEgeL._AC_SX425_.jpg" />
+      <div class="card-infos">
+        <div>
+          <h2> <%= instrument.name %></h2>
+          <div class="text-card">
+            <p>
+              <b><%= ((rental.end_date - rental.start_date)/(60*60*24)).to_i %> days left</b>
+              <br>
+              From : <%= rental.start_date.strftime('%a %d %b %Y') %>
+              <br>
+              Until : <%= rental.end_date.strftime('%a %d %b %Y') %>
+            </p>
+          </div>
+          <%= link_to "Edit", edit_rental_path(rental), class: "btn btn-success" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
