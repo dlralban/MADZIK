@@ -7,6 +7,7 @@ gem "devise"
 
 gem "pundit"
 
+gem "cloudinary"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
@@ -51,6 +52,7 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 
 gem 'faker'
+gem 'simple-form-datepicker', '~> 0.1.3'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

@@ -6,6 +6,7 @@ class InstrumentsController < ApplicationController
   end
 
   def show
+    @instrument = Instrument.find(params[:id])
     authorize @instrument
   end
 
@@ -16,8 +17,9 @@ class InstrumentsController < ApplicationController
 
   def create
     @instrument = Instrument.new(instruments_params)
+    @instrument.user = current_user
     authorize @instrument
-    if @instrument.save?
+    if @instrument.save
       redirect_to instrument_path(@instrument)
     else
       render :new, status: :unprocessable_entity
@@ -25,17 +27,21 @@ class InstrumentsController < ApplicationController
   end
 
   def edit
-    authorize @restaurant # Add this line
+    @instrument = Instrument.find(params[:id])
+    auhtorize @instrument
   end
 
   def update
-    authorize @restaurant # Add this line
-    @instrument.update(instruments_params)
-    redirect_to instrument_path(@instrument)
+      @instrument = Instrument.find(params[:id])
+      @instrument.update(instruments_params)
+      authorize @instrument 
+      redirect_to instrument_path(@instrument)
   end
+  
 
   def destroy
-    authorize @restaurant # Add this line
+    @instrument = Instrument.find(params[:id])
+    authorize @instrument
     @instrument.destroy
     redirect_to instruments_path, status: :see_other
   end
@@ -49,4 +55,5 @@ class InstrumentsController < ApplicationController
   def set_instrument
     @instrument = Instrument.find(params[:id])
   end
+
 end

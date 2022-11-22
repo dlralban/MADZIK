@@ -1,8 +1,14 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  transition: 0.5s background-color ease;
+
 }
 
+.navbar-transparent {
+
+  opacity: 0.8;
+}
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
@@ -19,7 +25,8 @@
   font-weight: lighter;
   opacity: 0.6;
   transition: opacity 0.3s ease;
-  margin-right: 24px;
+  margin-right: 18px;
+  margin-top: 8px;
 
 }
 
@@ -27,4 +34,15 @@
   opacity: 1;
   background-color: #a61818;
   color: white;
+}
+
+.navbar-log-out {
+  margin-top: 15x;
+}
+
+.navbar {
+  position:sticky;
+  top: 0;
+  z-index: 20000;
+
 }
