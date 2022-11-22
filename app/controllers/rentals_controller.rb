@@ -1,17 +1,23 @@
 class RentalsController < ApplicationController
-  before_action :set_instrument, only: %i[create]
-  before_action :set_rental, only: %i[edit update show]
+  before_action :set_instrument, only: %i[create new]
+  before_action :set_rental, only: %i[show edit update show]
+
+  def show
+    authorize @rental
+  end
 
   def new
     @rental = Rental.new
-    authorize @rental # Add this line
+    authorize @rental
   end
 
   def create
     @rental = Rental.new(rental_params)
     authorize @rental
-    if @rental.valid?
-      redirect_to instruments_path(@instrument)
+    @rental.instrument = @instrument
+    @rental.user = current_user
+    if @rental.save
+      redirect_to rental_path(@rental)
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,11 +35,10 @@ class RentalsController < ApplicationController
     @rentals = policy_scope(Rental)
   end
 
-
   private
 
   def rental_params
-    params.require(:instrument).permit(:name, :description, :address, :price)
+    params.require(:rental).permit(:start_date, :end_date)
   end
 
   def set_instrument
