@@ -49,4 +49,5 @@ class InstrumentsController < ApplicationController
   def set_instrument
     @instrument = Instrument.find(params[:id])
   end
+
 end
