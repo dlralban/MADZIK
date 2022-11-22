@@ -14,13 +14,26 @@ class InstrumentsController < ApplicationController
 
   def create
     @instrument = Instrument.new(instruments_params)
-    if @instrument.save?
-      redirect_to instruments_path(@instrument)
+    @instrument.user = current_user
+
+    if @instrument.save
+      redirect_to instrument_path(@instrument)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+  def edit
+    @instrument = Instrument.find(params[:id])
+  end
+
+  def update
+      @instrument = Instrument.find(params[:id])
+      @instrument.update(instruments_params)
+      # No need for app/views/instruments/update.html.erb
+      redirect_to instrument_path(@instrument)
+  end
+  
   private
 
   def instruments_params
