@@ -1,0 +1,5 @@
+<% if policy(@instrument).edit? %>
+  <%= link_to "Edit this instrument", edit_instrument_path(@instrument) %> |
+<% end %>
+<!-- [...] -->
+<%= button_to "Destroy this instrument", @instrument, method: :delete if policy(@instrument).destroy? %>
