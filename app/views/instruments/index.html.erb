@@ -40,7 +40,9 @@
     <% @instruments.each do |instrument| %>
 
     <div class="card">
-  <img src="https://www.gimplearn.net/fun.php?q=<%=instrument.name%>" />
+  <% if instrument.photo != nil %>
+    <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
   <div class="card-infos">
     <div>
       <h2><%= instrument.name %></h2>
