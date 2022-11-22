@@ -6,11 +6,8 @@
     "@hotwired/turbo-rails": "^7.2.4",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.2",
-<<<<<<< HEAD
     "flatpickr": "^4.6.13",
-=======
     "google-images-url": "^1.0.2",
->>>>>>> e57d6ea934735efe7a3530806d787d1ed267f058
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0"
   },
