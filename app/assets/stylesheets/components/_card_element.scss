@@ -1,0 +1,46 @@
+.main-card {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+.main-card-left {
+  width: 550px;
+  min-width: 300px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 6px;
+}
+
+.main-card-right {
+  width: 550px;
+  min-width: 300px;
+  padding: 30px;
+}
+
+.main-card-img-display {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.main-card-text {
+  margin: 10px 0;
+}
+
+.btn-large {
+  width: 100%;
+}
+
+.date-range {
+  height: 35px;
+  margin-left: 5px;
+  margin-right: 30px;
+  margin-bottom: 10px;
+  width: 100px;
+}
+
+.main-card-text-inline {
+  display: flex;
+}
