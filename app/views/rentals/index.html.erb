@@ -1,8 +1,9 @@
+<h1>My rents</h1>
 <div class="grid">
   <% @rentals.each do |rental| %>
     <% instrument = Instrument.find(rental.instrument_id)  %>
     <div class="card">
-      <img src="https://m.media-amazon.com/images/I/813oDnJEgeL._AC_SX425_.jpg" />
+      <%= cl_image_tag instrument.photo.key, height: 300, width: 400, :crop => "pad" %>
       <div class="card-infos">
         <div>
           <h2> <%= instrument.name %></h2>
@@ -14,8 +15,9 @@
               <br>
               Until : <%= rental.end_date.strftime('%a %d %b %Y') %>
             </p>
+            <p><%= rental.status %></p>
           </div>
-          <%= link_to "Edit", edit_rental_path(rental), class: "btn btn-success" %>
+          <%= link_to "Edit reservation", edit_rental_path(rental), class: "btn btn-success" %>
         </div>
       </div>
     </div>
