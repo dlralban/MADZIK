@@ -29,10 +29,13 @@ class RentalsController < ApplicationController
 
   def update
     authorize @rental
+    redirect_to rentals_path
   end
 
   def index
     @rentals = policy_scope(Rental)
+    my_instruments = Instrument.all.where(user: current_user)
+    @my_rentals = Rental.where(instrument: my_instruments)
   end
 
   private

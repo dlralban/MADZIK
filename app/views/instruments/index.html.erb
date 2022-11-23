@@ -1,6 +1,8 @@
 
 <%= render 'shared/title-center'%>
 
+<% if user_signed_in? && @my_instruments.count > 0 %>
+
 <h2>My instruments</h2>
 <div class="grid">
   <% @my_instruments.each do |instrument| %>
@@ -22,6 +24,8 @@
     <% end %>
   <% end %>
 </div>
+
+<% end %>
 
 <h2>Other's instruments</h2>
 <div class="grid">
