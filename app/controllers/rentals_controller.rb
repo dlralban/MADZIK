@@ -17,7 +17,7 @@ class RentalsController < ApplicationController
     @rental.instrument = @instrument
     @rental.user = current_user
     if @rental.save
-      redirect_to rental_path(@rental)
+      redirect_to rentals_path
     else
       render :new, status: :unprocessable_entity
     end

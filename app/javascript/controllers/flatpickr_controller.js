@@ -17,6 +17,7 @@ export default class extends Controller {
   }
 
   start() {
+    console.log(this.endDateInputTarget.value)
     const startDate = new Date(this.startDateInputTarget.value)
     const endDate = new Date(this.endDateInputTarget.value)
     const totalPrice = ((endDate - startDate) / (1000 * 60 * 60 * 24) * this.priceTarget.getAttribute('value')).toFixed(2)
