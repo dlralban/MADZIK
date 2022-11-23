@@ -30,7 +30,7 @@ class InstrumentsController < ApplicationController
 
   def edit
     @instrument = Instrument.find(params[:id])
-    auhtorize @instrument
+    authorize @instrument
   end
 
   def update
