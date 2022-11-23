@@ -1,28 +1,48 @@
-<div class="main-card">
-  <div class="main-card-left">
-    <img class="main-card-img-display" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Old_violin.jpg/280px-Old_violin.jpg">
-  </div>
-  <div class="main-card-right">
-    <h1 class="main-card-text">Name of the instrument</h1>
-    <h2 class="main-card-text">Name of the owner</h2>
-    <p class="main-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat</p>
-    <h6 class="main-card-text"><strong>Prix : 19.99€ par jour</strong></h6>
-    <div class="main-card-text-inline">
-    <!-- A changer par Julien -->
-    <h6 class="main-card-text"><strong>Start date :</strong> </h6>
-    <input type="text" name="daterange" value="01/01/2023 - 01/05/2023" class="date-range" />
-    <h6 class="main-card-text"><strong>End date :</strong> </h6>
-    <input type="text" name="daterange" value="01/01/2023 - 01/05/2023" class="date-range" />
+<div data-controller='flatpickr'>
+  <div class="main-card">
+    <div class="main-card-left">
+      <% if @instrument.photo != nil %>
+        <%= cl_image_tag @instrument.photo.key, height: 550, width: 300, crop: :pad %>
+      <% end %>
     </div>
-    <button name="button" type="submit" class="btn btn-color btn-large">
-        Réserver
-    </button>
-    <!-- A changer par Julien -->
-  </div>
-</div>
+    <div class="main-card-right">
+      <h1 class="main-card-text"><%= @instrument.name %></h1>
+      <h2 class="main-card-text">Owner: <%= @instrument.user.username %></h2>
+      <h2 class="main-card-text">Address: <%= @instrument.address %></h2>
+      <p class="main-card-text"> Description: <%= @instrument.description %> </p>
+      <h6 class="main-card-text" data-flatpickr-target="price" value='<%= @instrument.price %>'><strong >price : <%= @instrument.price %>€ / day</strong></h6>
+      <h6 class="main-card-text"><strong data-flatpickr-target="totalPrice" value='<%= @instrument.price%>' >total price : <%= @instrument.price %>€</strong></h6>
+      <div class="main-card-text-inline">
+      <!-- A changer par Julien -->
+  <%= simple_form_for [@instrument, @rental],
+                      html: {
+                      } do |f| %>
+    <%= f.input :start_date,
+                as: :string,
+                input_html: {
+                  data: {
+                    flatpickr_target: 'startDateInput',
+                    action: "flatpickr#start"
+  } } %>
+    <%= f.input :end_date,
+                as: :string,
+                input_html: {
+                  data: {
+                    flatpickr_target: 'endDateInput',
+                    id: 'haha'
+                  }
+  } %>
+    <%= f.submit 'Book now!', class: 'btn btn-primary' %>
+  <% end %>
 
-<% if policy(@instrument).edit? %>
-  <%= link_to "Edit this instrument", edit_instrument_path(@instrument) %> |
-<% end %>
-<!-- [...] -->
-<%= button_to "Destroy this instrument", @instrument, method: :delete if policy(@instrument).destroy? %>
+      <!-- A changer par Julien -->
+    </div>
+  </div>
+
+  <% if policy(@instrument).edit? %>
+    <%= link_to "Edit this instrument", edit_instrument_path(@instrument) %> |
+  <% end %>
+  <!-- [...] -->
+  <%= button_to "Destroy this instrument", @instrument, method: :delete if policy(@instrument).destroy? %>
+
+</div>
