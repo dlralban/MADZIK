@@ -19,15 +19,19 @@
           </div>
 
           <% if rental.status == 'pending' %>
-        <%= link_to rental_path(rental), data: {turbo_method: :patch} do %>
-            <button class="btn btn-success">Approved</button>
-            <% rental.update(status: 'approved')%>
-        <% end %>
-        <%= link_to rental_path(rental), data: {turbo_method: :patch} do %>
-            <button class="btn btn-danger">Declined</button>
-            <% rental.update(status: 'declined')%>
-        <% end %>
-        <% end %>
+          <div class="d-flex justify-content-between">
+            <%= simple_form_for(rental) do |f| %>
+              <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" }%>
+              <%= f.submit "Approve", class: "btn btn-success"%>
+            <% end %>
+
+            <%= simple_form_for(rental) do |f| %>
+              <%= f.input :status, :as => :hidden, :input_html => { :value => "declined" }%>
+              <%= f.submit "Decline", class: "btn btn-danger text-white"%>
+            <% end %>
+          </div>
+
+          <% end %>
         </div>
       </div>
     </div>
