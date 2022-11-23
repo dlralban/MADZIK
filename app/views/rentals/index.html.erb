@@ -1,3 +1,40 @@
+<h1>My instruments rented</h1>
+<div class="grid">
+  <% @my_rentals.each do |rental| %>
+    <% instrument = Instrument.find(rental.instrument_id)  %>
+    <div class="card">
+      <%= cl_image_tag instrument.photo.key, height: 300, width: 400, :crop => "pad" %>
+      <div class="card-infos">
+        <div>
+          <h2> <%= instrument.name %></h2>
+          <div class="text-card">
+            <p>
+              <b><%= ((rental.end_date - rental.start_date)/(60*60*24)).to_i %> days left</b>
+              <br>
+              From : <%= rental.start_date.strftime('%a %d %b %Y') %>
+              <br>
+              Until : <%= rental.end_date.strftime('%a %d %b %Y') %>
+            </p>
+            <p><%= rental.status %></p>
+          </div>
+
+          <% if rental.status == 'pending' %>
+        <%= link_to rental_path(rental), data: {turbo_method: :patch} do %>
+            <button class="btn btn-success">Approved</button>
+            <% rental.update(status: 'approved')%>
+        <% end %>
+        <%= link_to rental_path(rental), data: {turbo_method: :patch} do %>
+            <button class="btn btn-danger">Declined</button>
+            <% rental.update(status: 'declined')%>
+        <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
 <h1>My rents</h1>
 <div class="grid">
   <% @rentals.each do |rental| %>
