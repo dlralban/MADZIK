@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     resources :rentals, only: %i[new create]
   end
 
-  resources :rentals, only: %i[index show edit update]
+  resources :rentals, only: %i[index show edit update destroy]
 end
