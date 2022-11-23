@@ -1,6 +1,6 @@
 require 'faker'
 require 'open-uri'
-require 'Nokogiri'
+require 'nokogiri'
 
 Rental.destroy_all
 Instrument.destroy_all
