@@ -14,27 +14,26 @@
       <h6 class="main-card-text"><strong data-flatpickr-target="totalPrice" value='<%= @instrument.price%>' >total price : <%= @instrument.price %>€</strong></h6>
       <div class="main-card-text-inline">
       <!-- A changer par Julien -->
-  <%= simple_form_for [@instrument, @rental],
-                      html: {
-                      } do |f| %>
-    <%= f.input :start_date,
-                as: :string,
-                input_html: {
-                  data: {
-                    flatpickr_target: 'startDateInput',
-                    action: "flatpickr#start"
-  } } %>
-    <%= f.input :end_date,
-                as: :string,
-                input_html: {
-                  data: {
-                    flatpickr_target: 'endDateInput',
-                    id: 'haha'
-                  }
-  } %>
-    <%= f.submit 'Book now!', class: 'btn btn-primary' %>
-  <% end %>
-
+      <%= simple_form_for [@instrument, @rental],
+                          html: {
+                          } do |f| %>
+        <%= f.input :start_date,
+                    as: :string,
+                    input_html: {
+                      data: {
+                        flatpickr_target: 'startDateInput',
+                        action: "flatpickr#start"
+      } } %>
+        <%= f.input :end_date,
+                    as: :string,
+                    input_html: {
+                      data: {
+                        flatpickr_target: 'endDateInput',
+                        id: 'haha'
+                      }
+      } %>
+        <%= f.submit 'Book now!', class: 'btn btn-primary' %>
+      <% end %>
       <!-- A changer par Julien -->
     </div>
   </div>
