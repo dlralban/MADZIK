@@ -18,15 +18,15 @@
           <li class="nav-item active">
           <%= link_to "My instruments", instruments_path , class: "btn btn-ghost" %>
           </li>
-          
+
           <li class="nav-item active">
-            <%= link_to "My rentals", "#", class: "btn btn-ghost" %>
+            <%= link_to "My rentals", rentals_path, class: "btn btn-ghost" %>
             </li>
           <li class="nav-item dropdown">
             <%= image_tag "avatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%#= link_to "Action", "#", class: "dropdown-item" %>
+              <%#= link_to "Another action", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
           </li>
