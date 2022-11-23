@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
   before_action :set_instrument, only: %i[create new]
-  before_action :set_rental, only: %i[show edit update show]
+  before_action :set_rental, only: %i[show edit update show destroy]
 
   def show
     authorize @rental
@@ -29,6 +29,7 @@ class RentalsController < ApplicationController
 
   def update
     authorize @rental
+    @rental.update(status: params[:rental][:status])
     redirect_to rentals_path
   end
 
@@ -36,6 +37,12 @@ class RentalsController < ApplicationController
     @rentals = policy_scope(Rental)
     my_instruments = Instrument.all.where(user: current_user)
     @my_rentals = Rental.where(instrument: my_instruments)
+  end
+
+  def destroy
+    authorize @rental
+    @rental.destroy
+    redirect_to rentals_path, status: :see_other
   end
 
   private
@@ -51,5 +58,4 @@ class RentalsController < ApplicationController
   def set_rental
     @rental = Rental.find(params[:id])
   end
-
 end

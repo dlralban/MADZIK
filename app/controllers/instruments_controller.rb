@@ -35,15 +35,13 @@ class InstrumentsController < ApplicationController
   end
 
   def update
-      @instrument = Instrument.find(params[:id])
-      @instrument.update(instruments_params)
-      authorize @instrument
-      redirect_to instrument_path(@instrument)
+    @instrument = Instrument.find(params[:id])
+    @instrument.update(instruments_params)
+    authorize @instrument
+    redirect_to instrument_path(@instrument)
   end
 
-
   def destroy
-    @instrument = Instrument.find(params[:id])
     authorize @instrument
     @instrument.destroy
     redirect_to instruments_path, status: :see_other
