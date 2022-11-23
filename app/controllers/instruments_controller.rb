@@ -4,6 +4,15 @@ class InstrumentsController < ApplicationController
   def index
     @my_instruments = policy_scope(Instrument)
     @instruments = Instrument.all.where.not(user: current_user)
+    @instruments = Instrument.all
+    @markers = @instruments.geocoded.map do |instrument|
+    {
+      lat: instrument.latitude,
+      lng: instrument.longitude,
+      info_window: render_to_string(partial: "info_window", locals:
+        {instrument: instrument})
+    }
+    end
   end
 
   def show
