@@ -8,6 +8,8 @@ class InstrumentsController < ApplicationController
   def show
     @instrument = Instrument.find(params[:id])
     authorize @instrument
+    @rental = Rental.new
+    authorize @rental
   end
 
   def new
