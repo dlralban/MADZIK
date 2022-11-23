@@ -29,6 +29,7 @@ class RentalsController < ApplicationController
 
   def update
     authorize @rental
+    @rental.update(status: params[:rental][:status])
     redirect_to rentals_path
   end
 
