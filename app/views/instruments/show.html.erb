@@ -9,14 +9,28 @@
     <h6 class="main-card-text"><strong>Prix : 19.99€ par jour</strong></h6>
     <div class="main-card-text-inline">
     <!-- A changer par Julien -->
-    <h6 class="main-card-text"><strong>Start date :</strong> </h6>
-    <input type="text" name="daterange" value="01/01/2023 - 01/05/2023" class="date-range" />
-    <h6 class="main-card-text"><strong>End date :</strong> </h6>
-    <input type="text" name="daterange" value="01/01/2023 - 01/05/2023" class="date-range" />
-    </div>
-    <button name="button" type="submit" class="btn btn-color btn-large">
-        Réserver
-    </button>
+<%= simple_form_for [@instrument, @rental],
+                    html: {
+                      data: {
+                        controller: 'flatpickr'
+                      }
+                    } do |f| %>
+  <%= f.input :start_date,
+              as: :string,
+              input_html: {
+                data: {
+                  flatpickr_target: 'startDateInput',
+} } %>
+  <%= f.input :end_date,
+              as: :string,
+              input_html: {
+                data: {
+                  flatpickr_target: 'endDateInput'
+                }
+} %>
+  <%= f.submit 'Book now!', class: 'btn btn-primary' %>
+<% end %>
+
     <!-- A changer par Julien -->
   </div>
 </div>
