@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
   before_action :set_instrument, only: %i[create new]
-  before_action :set_rental, only: %i[show edit update show]
+  before_action :set_rental, only: %i[show edit update show destroy]
 
   def show
     authorize @rental
@@ -39,6 +39,12 @@ class RentalsController < ApplicationController
     @my_rentals = Rental.where(instrument: my_instruments)
   end
 
+  def destroy
+    authorize @rental
+    @rental.destroy
+    redirect_to rentals_path, status: :see_other
+  end
+
   private
 
   def rental_params
@@ -52,5 +58,4 @@ class RentalsController < ApplicationController
   def set_rental
     @rental = Rental.find(params[:id])
   end
-
 end
