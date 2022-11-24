@@ -18,6 +18,10 @@ class InstrumentPolicy < ApplicationPolicy
     true
   end
 
+  def my_instruments?
+    true
+  end
+
   def update?
     record.user == user
     # record: the restaurant passed to the `authorize` method in controller

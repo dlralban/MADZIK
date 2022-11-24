@@ -15,6 +15,13 @@ class InstrumentsController < ApplicationController
     end
   end
 
+  def my_instruments
+    @my_instruments = policy_scope(Instrument)
+    @rentals = policy_scope(Rental)
+    @my_rentals = Rental.where(instrument: @my_instruments)
+    authorize @my_instruments
+  end
+
   def show
     @instrument = Instrument.find(params[:id])
     authorize @instrument
