@@ -1,4 +1,4 @@
-<div data-controller='flatpickr'>
+<div data-controller='flatpickr' data-flatpickr-dates-value="<%= @instrument.flatpickr_booked_dates_object.to_json %>">
   <div class="main-card">
     <div class="main-card-left">
       <% if @instrument.photo != nil %>
