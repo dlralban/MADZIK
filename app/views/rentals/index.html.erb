@@ -61,7 +61,7 @@
             </p>
             <p><%= rental.status %></p>
           </div>
-          <%= button_to "Cancel", rental, method: :delete, class:"mt-3 btn btn-danger text-white" if policy(rental).destroy? %>
+          <%= button_to "Cancel", rental, method: :delete, class:"btn-half btn-half-black btn-full-black" if policy(rental).destroy? %>
         </div>
       </div>
     </div>
