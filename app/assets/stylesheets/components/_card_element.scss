@@ -1,22 +1,22 @@
 .main-card {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-}
-
-.main-card-left {
-  width: 550px;
-  min-width: 300px;
   background-color: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 6px;
-  justify-content: center;
+  width: 800px;
+  margin: auto;
+}
+
+.main-card-left {
+  width: 400px;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-card-right {
-  width: 550px;
-  min-width: 300px;
+  width: 400px;
   padding: 30px;
 }
 
@@ -27,9 +27,8 @@
 }
 
 .main-card-text {
-  margin: 10px 0;
+  margin: 5px 0;
 }
-
 
 .btn-large {
   width: 100%;
@@ -56,4 +55,22 @@
 
 .main-card-text-inline {
   display: flex;
+}
+
+.new_rental {
+  width: 100%;
+}
+
+.main-card-text-inline {
+  display: flex;
+}
+
+.main-card-form {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.main-card-input {
+  width: 150px;
+  margin: auto;
 }

@@ -2,18 +2,19 @@
   <div class="main-card">
     <div class="main-card-left">
       <% if @instrument.photo != nil %>
-        <%= cl_image_tag @instrument.photo.key, height: 550, width: 300, crop: :pad %>
+        <%= cl_image_tag @instrument.photo.key, height: 380, width: 380, crop: :pad %>
       <% end %>
     </div>
     <div class="main-card-right">
       <h1 class="main-card-text"><%= @instrument.name %></h1>
-      <h2 class="main-card-text">Owner: <%= @instrument.user.username %></h2>
-      <h2 class="main-card-text">Address: <%= @instrument.address %></h2>
-      <p class="main-card-text"> Description: <%= @instrument.description %> </p>
-      <h6 class="main-card-text" data-flatpickr-target="price" value='<%= @instrument.price %>'><strong >price : <%= @instrument.price %>€ / day</strong></h6>
-      <% if @instrument.user != current_user%>
-        <h6 class="main-card-text"><strong data-flatpickr-target="totalPrice" value='<%= @instrument.price%>' >total price : <%= @instrument.price %>€</strong></h6>
-      <% end %>
+      <p class="main-card-text"> Description: <%= @instrument.description %></p><br>
+
+      <p class="main-card-text"><em>Owner: <%= @instrument.user.username %></em></p>
+      <p class="main-card-text"><em>Address: <%= @instrument.address %></em></p><br>
+      <div class="main-card-text-inline">
+        <h6 class="main-card-text" data-flatpickr-target="price" value='<%= @instrument.price %>'>Price : <%= @instrument.price %>€ / day - </h6>
+        <h6 class="main-card-text"><strong data-flatpickr-target="totalPrice" value='<%= @instrument.price%>' > Total price : <%= @instrument.price %>€</strong></h6>
+      </div><br>
       <div class="main-card-text-inline">
   <% if @instrument.user == current_user %>
       <div >
@@ -49,11 +50,12 @@
 
   <% else %>
       <%= simple_form_for [@instrument, @rental],
-                          html: {
+                          html: { class: 'main-card-form'
                           } do |f| %>
         <%= f.input :start_date,
                     as: :string,
                     input_html: {
+                      class: "main-card-input",
                       data: {
                         flatpickr_target: 'startDateInput',
                         action: "flatpickr#start"
@@ -61,12 +63,13 @@
         <%= f.input :end_date,
                     as: :string,
                     input_html: {
+                      class: "main-card-input",
                       data: {
                         flatpickr_target: 'endDateInput',
                         id: 'haha'
                       }
-        } %>
-        <%= f.submit 'Book now!', class: 'btn btn-primary' %>
+      } %>
+        <%= f.submit 'Book now!', class: 'btn btn-large' %>
       <% end %>
   <% end %>
     </div>
