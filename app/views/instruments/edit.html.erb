@@ -1,7 +1,10 @@
-<%= simple_form_for(@instrument) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :description %>
-  <%= f.input :price %>
-  <%= f.submit %>
-<% end %>
+<div class="card-half">
+  <h2>Edit a music instrument</h2><br>
+  <%= simple_form_for(@instrument) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.submit  class: 'btn-large' %>
+  <% end %>
+</div>

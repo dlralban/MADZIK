@@ -1,5 +1,6 @@
+<div class="grid-center">
 <% if @my_rentals.count > 0%>
-  <h1>My instruments rented</h1>
+  <h2>My instruments rented</h2>
   <div class="grid">
     <% @my_rentals.each do |rental| %>
       <% instrument = Instrument.find(rental.instrument_id)  %>
@@ -42,7 +43,7 @@
 <% end %>
 
 
-<h1>My rents</h1>
+<h2>My rents</h2>
 <div class="grid">
   <% @rentals.each do |rental| %>
     <% instrument = Instrument.find(rental.instrument_id)  %>
@@ -61,9 +62,10 @@
             </p>
             <p><%= rental.status %></p>
           </div>
-          <%= button_to "Cancel", rental, method: :delete, class:"mt-3 btn btn-danger text-white" if policy(rental).destroy? %>
+          <%= button_to "Cancel", rental, method: :delete, class:"btn-half btn-half-black btn-full-black" if policy(rental).destroy? %>
         </div>
       </div>
     </div>
   <% end %>
+</div>
 </div>
