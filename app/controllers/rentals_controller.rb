@@ -19,7 +19,7 @@ class RentalsController < ApplicationController
     if @rental.save
       redirect_to rentals_path
     else
-      render :new, status: :unprocessable_entity
+      render 'instruments/show', status: :unprocessable_entity
     end
   end
 

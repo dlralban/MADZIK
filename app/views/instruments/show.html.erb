@@ -71,7 +71,16 @@
                         id: 'haha'
                       }
       } %>
-        <%= f.submit 'Book now!', class: 'btn btn-large' %>
+        <% if current_user%>
+          <%= f.submit 'Book now!', class: 'btn btn-large' %>
+        <% else %>
+          <%= link_to new_user_session_path do %>
+          <div class="haha">
+            <div class="width-btn">Book now!</div>
+          </div>
+
+          <% end %>
+        <% end %>
       <% end %>
   <% end %>
     </div>
