@@ -1,5 +1,6 @@
+<div class="grid-center">
 <% if @my_rentals.count > 0%>
-  <h1>My instruments rented</h1>
+  <h2>My instruments rented</h2>
   <div class="grid">
     <% @my_rentals.each do |rental| %>
       <% instrument = Instrument.find(rental.instrument_id)  %>
@@ -42,7 +43,7 @@
 <% end %>
 
 
-<h1>My rents</h1>
+<h2>My rents</h2>
 <div class="grid">
   <% @rentals.each do |rental| %>
     <% instrument = Instrument.find(rental.instrument_id)  %>
@@ -66,4 +67,5 @@
       </div>
     </div>
   <% end %>
+</div>
 </div>
