@@ -3,8 +3,13 @@ class InstrumentsController < ApplicationController
 
   def index
     @my_instruments = policy_scope(Instrument)
-    @instruments = Instrument.all.where.not(user: current_user)
-    @instruments = Instrument.all
+    # @instruments = Instrument.all.where.not(user: current_user)
+    # @instruments = Instrument.all
+    if params[:query].present?
+      @instruments = Instrument.where("name ILIKE ?", "%#{params[:query]}%")
+    else
+      @instruments = Instrument.all
+    end
     @markers = @instruments.geocoded.map do |instrument|
     {
       lat: instrument.latitude,
