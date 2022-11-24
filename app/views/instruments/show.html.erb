@@ -17,7 +17,6 @@
       </div><br>
       <div class="main-card-text-inline">
   <% if @instrument.user == current_user %>
-      <div >
         <% @instrument.rentals.all.select{|rental| rental.status == "pending"}.first(2).each do |rental| %>
         <% if rental.status == "pending" %>
           <div class="accept-refuse-box">
@@ -39,14 +38,13 @@
 
         <% end %>
 
-        <div>
-          <% if policy(@instrument).edit? %>
-            <%= link_to "Edit this instrument", edit_instrument_path(@instrument), class:"btn border mt-3 border-success" %>
-          <% end %>
-          <%= button_to "Destroy this instrument", @instrument, method: :delete, class:"mt-3" if policy(@instrument).destroy? %>
-        </div>
+          <div class = "main-card-form">
+            <% if policy(@instrument).edit? %>
+            <%= button_to "Edit instrument", edit_instrument_path(@instrument), :method => :get, :class => "btn-half" %>
+            <% end %>
+            <%= button_to "Delete", @instrument, method: :delete, class:"btn-half btn-half-black" if policy(@instrument).destroy? %>
+          </div>
 
-      </div>
 
   <% else %>
       <%= simple_form_for [@instrument, @rental],
