@@ -20,7 +20,7 @@ end
   img_url = html_doc.search(".yWs4tf").first.attributes["src"].value
   final_url = URI.open(img_url)
 
-  instrument = Instrument.create(name: name, description: Faker::Lorem.sentence, address: Faker::Address.full_address, price: Faker::Number.decimal(l_digits: 2), available: true, user: User.all.sample)
+  instrument = Instrument.create(name: name, description: Faker::Lorem.sentence, address: "Paris, France", price: Faker::Number.decimal(l_digits: 2), available: true, user: User.all.sample)
   instrument.photo.attach(io: final_url, filename: "instrument_img#{rand(1..999999)}.png", content_type: "image/png")
   instrument.save!
 end
