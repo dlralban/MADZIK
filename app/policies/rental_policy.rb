@@ -10,7 +10,7 @@ class RentalPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    record.user == user || record.instrument.user == user
   end
 
   def create?
