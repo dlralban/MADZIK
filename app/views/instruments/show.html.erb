@@ -11,22 +11,32 @@
       <h2 class="main-card-text">Address: <%= @instrument.address %></h2>
       <p class="main-card-text"> Description: <%= @instrument.description %> </p>
       <h6 class="main-card-text" data-flatpickr-target="price" value='<%= @instrument.price %>'><strong >price : <%= @instrument.price %>€ / day</strong></h6>
-      <h6 class="main-card-text"><strong data-flatpickr-target="totalPrice" value='<%= @instrument.price%>' >total price : <%= @instrument.price %>€</strong></h6>
+      <% if @instrument.user != current_user%>
+        <h6 class="main-card-text"><strong data-flatpickr-target="totalPrice" value='<%= @instrument.price%>' >total price : <%= @instrument.price %>€</strong></h6>
+      <% end %>
       <div class="main-card-text-inline">
-      <!-- A changer par Julien -->
   <% if @instrument.user == current_user %>
       <div >
-        <div class="d-flex justify-content-between">
-            <%= simple_form_for(@rental) do |f| %>
-            <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" }%>
-            <%= f.submit "Approve", class: "btn btn-success"%>
-          <% end %>
+        <% @instrument.rentals.all.select{|rental| rental.status == "pending"}.first(2).each do |rental| %>
+        <% if rental.status == "pending" %>
+          <div class="accept-refuse-box">
+            <p>start date: <%= rental.start_date %> </p>
+            <p class="m-0">end date: <%= rental.end_date %> </p>
+            <div class="d-flex justify-content-start">
+                <%= simple_form_for(rental) do |f| %>
+                <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" }%>
+                <%= f.submit "Approve", class: "btn btn-success"%>
+              <% end %>
 
-          <%= simple_form_for(@rental) do |f| %>
-            <%= f.input :status, :as => :hidden, :input_html => { :value => "declined" }%>
-            <%= f.submit "Decline", class: "btn btn-danger text-white ms-3"%>
+              <%= simple_form_for(rental) do |f| %>
+                <%= f.input :status, :as => :hidden, :input_html => { :value => "declined" }%>
+                <%= f.submit "Decline", class: "btn btn-danger text-white ms-3"%>
+              <% end %>
+            </div>
           <% end %>
         </div>
+
+        <% end %>
 
         <div>
           <% if policy(@instrument).edit? %>
@@ -37,7 +47,7 @@
 
       </div>
 
-    <% else %>
+  <% else %>
       <%= simple_form_for [@instrument, @rental],
                           html: {
                           } do |f| %>
@@ -47,7 +57,7 @@
                       data: {
                         flatpickr_target: 'startDateInput',
                         action: "flatpickr#start"
-      } } %>
+        } } %>
         <%= f.input :end_date,
                     as: :string,
                     input_html: {
@@ -55,14 +65,10 @@
                         flatpickr_target: 'endDateInput',
                         id: 'haha'
                       }
-      } %>
+        } %>
         <%= f.submit 'Book now!', class: 'btn btn-primary' %>
       <% end %>
-    <% end %>
-      <!-- A changer par Julien -->
+  <% end %>
     </div>
   </div>
-
-  <!-- [...] -->
-
 </div>
