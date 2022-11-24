@@ -1,4 +1,4 @@
-
+<div class="grid-center">
 <%= render 'shared/title-center'%>
 
 <% if user_signed_in? && @my_instruments.count > 0 %>
@@ -48,7 +48,13 @@
     <% end %>
   <% end %>
 </div>
+<div style="width: 100%; height: 600px;"
+              data-controller="map"
+              data-map-markers-value="<%= @markers.to_json %>"
+              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+              </div>
 
 
 
 <%# <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill %>
+</div>

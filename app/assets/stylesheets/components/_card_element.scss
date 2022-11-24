@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-
 }
 
 .main-card-left {
@@ -31,8 +30,20 @@
   margin: 10px 0;
 }
 
+
 .btn-large {
   width: 100%;
+  min-height: 40px;
+  margin: 10px 0;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background-color: #7895B2;
+  color: white;
+  border-style: none;
+}
+
+.btn-large:hover {
+  background-color: #3181BD;
+  color: white;
 }
 
 .date-range {
