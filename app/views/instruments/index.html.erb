@@ -1,27 +1,34 @@
 <div class="grid-center">
-<%= render 'shared/title-center'%>
+  <%= render 'shared/title-center'%>
 
-<h2>Other's instruments</h2>
-<div class="grid">
-  <% @instruments.each do |instrument| %>
-    <%= link_to instrument_path(instrument) do %>
-      <div class="card">
-        <% if instrument.photo != nil %>
-          <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill %>
-        <% end %>
-        <div class="card-infos">
-          <div>
-            <h2><%= instrument.name%></h2>
-            <div class="text-card">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse  rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectrem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor</p>
-            </div><br>
-            <h2 class="card-pricing">€<%= instrument.price %></h2>
+  <h2>Instruments</h2>
+  <div class="grid">
+    <% @instruments.each do |instrument| %>
+      <%= link_to instrument_path(instrument) do %>
+        <div class="card">
+          <% if instrument.photo != nil %>
+            <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill %>
+          <% end %>
+          <div class="card-infos">
+            <div>
+              <h2><%= instrument.name%></h2>
+              <div class="text-card">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse  rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectrem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor</p>
+              </div><br>
+              <h2 class="card-pricing">€<%= instrument.price %></h2>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+
+  <div style="width: 100%; height: 600px;"
+              data-controller="map"
+              data-map-markers-value="<%= @markers.to_json %>"
+              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+              </div>
+
 
 
 

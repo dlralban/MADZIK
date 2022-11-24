@@ -1,5 +1,6 @@
 class InstrumentsController < ApplicationController
   before_action :set_instrument, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: :index
 
   def index
     @my_instruments = policy_scope(Instrument)
@@ -11,12 +12,11 @@ class InstrumentsController < ApplicationController
       @instruments = Instrument.all
     end
     @markers = @instruments.geocoded.map do |instrument|
-    {
-      lat: instrument.latitude,
-      lng: instrument.longitude,
-      info_window: render_to_string(partial: "info_window", locals:
-        {instrument: instrument})
-    }
+      {
+        lat: instrument.latitude,
+        lng: instrument.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { instrument: })
+      }
     end
   end
 
@@ -77,5 +77,4 @@ class InstrumentsController < ApplicationController
   def set_instrument
     @instrument = Instrument.find(params[:id])
   end
-
 end
