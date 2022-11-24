@@ -7,52 +7,49 @@
     </div>
     <div class="main-card-right">
       <h1 class="main-card-text"><%= @instrument.name %></h1>
-      <p class="main-card-text"> Description: <%= @instrument.description %></p><br>
-
+      <p class="main-card-text"> Description: <%= @instrument.description %></p>
+      <br>
       <p class="main-card-text"><em>Owner: <%= @instrument.user.username %></em></p>
-      <p class="main-card-text"><em>Address: <%= @instrument.address %></em></p><br>
+      <p class="main-card-text"><em>Address: <%= @instrument.address %></em></p>
+      <br>
       <div class="main-card-text-inline">
-        <h6 class="main-card-text" data-flatpickr-target="price" value='<%= @instrument.price %>'>Price : <%= @instrument.price %>€ / da</h6>
+        <h6 class="main-card-text" data-flatpickr-target="price" value='<%= @instrument.price %>'>Price : <%= @instrument.price %>€ / day &#8196</h6>
         <% if @instrument.user != current_user %>
-          <h6 class="main-card-text">y - <strong data-flatpickr-target="totalPrice" value='<%= @instrument.price%>' > Total price : <%= @instrument.price %>€</strong></h6>
+          <h6 class="main-card-text">-&#8196<strong data-flatpickr-target="totalPrice" value='<%= @instrument.price%>' >Total price : <%= @instrument.price %>€</strong></h6>
         <% end %>
-      </div><br>
+      </div>
+      <br>
       <div class="main-card-text-inline">
-  <% if @instrument.user == current_user %>
-        <% @instrument.rentals.all.select{|rental| rental.status == "pending"}.first(2).each do |rental| %>
-        <% if rental.status == "pending" %>
-          <div class="accept-refuse-box">
-            <p>start date: <%= rental.start_date %> </p>
-            <p class="m-0">end date: <%= rental.end_date %> </p>
-            <div class="d-flex justify-content-start">
-                <%= simple_form_for(rental) do |f| %>
-                <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" }%>
-                <%= f.submit "Approve", class: "btn btn-success"%>
-              <% end %>
-
-              <%= simple_form_for(rental) do |f| %>
-                <%= f.input :status, :as => :hidden, :input_html => { :value => "declined" }%>
-                <%= f.submit "Decline", class: "btn btn-danger text-white ms-3"%>
+        <% if @instrument.user == current_user %>
+          <% @instrument.rentals.all.select{|rental| rental.status == "pending"}.first(2).each do |rental| %>
+            <% if rental.status == "pending" %>
+              <div class="accept-refuse-box">
+                <p>start date: <%= rental.start_date %> </p>
+                <p class="m-0">end date: <%= rental.end_date %> </p>
+                <div class="d-flex justify-content-start">
+                  <%= simple_form_for(rental) do |f| %>
+                    <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" }%>
+                    <%= f.submit "Approve", class: "btn btn-success"%>
+                  <% end %>
+                  <%= simple_form_for(rental) do |f| %>
+                    <%= f.input :status, :as => :hidden, :input_html => { :value => "declined" }%>
+                    <%= f.submit "Decline", class: "btn btn-danger text-white ms-3"%>
+                  <% end %>
+                </div>
               <% end %>
             </div>
           <% end %>
-        </div>
-
-        <% end %>
-
           <div class = "main-card-form">
             <% if policy(@instrument).edit? %>
-            <%= button_to "Edit instrument", edit_instrument_path(@instrument), :method => :get, :class => "btn-half" %>
+              <%= button_to "Edit instrument", edit_instrument_path(@instrument), :method => :get, :class => "btn-half" %>
             <% end %>
             <%= button_to "Delete", @instrument, method: :delete, class:"btn-half btn-half-black" if policy(@instrument).destroy? %>
           </div>
-
-
-  <% else %>
-      <%= simple_form_for [@instrument, @rental],
+        <% else %>
+          <%= simple_form_for [@instrument, @rental],
                           html: { class: 'main-card-form'
                           } do |f| %>
-        <%= f.input :start_date,
+            <%= f.input :start_date,
                     as: :string,
                     input_html: {
                       class: "main-card-input",
@@ -60,7 +57,7 @@
                         flatpickr_target: 'startDateInput',
                         action: "flatpickr#start"
         } } %>
-        <%= f.input :end_date,
+            <%= f.input :end_date,
                     as: :string,
                     input_html: {
                       class: "main-card-input",
@@ -69,18 +66,17 @@
                         id: 'haha'
                       }
       } %>
-        <% if current_user%>
-          <%= f.submit 'Book now!', class: 'btn btn-large' %>
-        <% else %>
-          <%= link_to new_user_session_path do %>
-          <div class="haha">
-            <div class="width-btn">Book now!</div>
-          </div>
-
+            <% if current_user%>
+              <%= f.submit 'Book now!', class: 'btn btn-large' %>
+            <% else %>
+              <%= link_to new_user_session_path do %>
+                <div class="haha">
+                  <div class="width-btn">Book now!</div>
+                </div>
+              <% end %>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-  <% end %>
+      </div>
     </div>
   </div>
-</div>
