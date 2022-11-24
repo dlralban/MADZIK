@@ -2,8 +2,6 @@
 </div>
 <div class="grid-center">
   <%= render 'shared/title-center'%>
-
-  <h2>Instruments</h2>
   <div class="grid">
     <% @instruments.each do |instrument| %>
       <%= link_to instrument_path(instrument) do %>
