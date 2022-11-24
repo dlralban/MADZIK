@@ -19,7 +19,7 @@ class InstrumentsController < ApplicationController
       info_window: render_to_string(partial: "info_window", locals: {instrument: instrument}),
       image_url: helpers.asset_url("guitar.png")
     }
-    
+
     end
   end
 
@@ -34,7 +34,6 @@ class InstrumentsController < ApplicationController
     @instrument = Instrument.find(params[:id])
     authorize @instrument
     @rental = Rental.new
-    authorize @rental
   end
 
   def new

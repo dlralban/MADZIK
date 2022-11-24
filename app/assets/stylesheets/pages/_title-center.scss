@@ -31,7 +31,8 @@
 }
 
 .btn-color {
-  border-radius: 10px;
+  height: 40px;
+  border-radius: 4px;
   background-color: #7895B2;
   color: white;
 }
@@ -52,6 +53,19 @@
   text-align: center;
 }
 
+.btn-semi {
+  height: 40px;
+  width: 90px;
+  margin: auto;
+  color: white;
+  border-radius: 4px;
+  border-style: none;
+  background-color: #7895B2;
+  text-align: center;
+}
+
+
+
 .btn-half:hover {
   background-color: #3181BD;
 }
@@ -68,6 +82,10 @@
   color: black;
   background-color: white;
   border: 1px solid;
+}
+
+.btn-full-black {
+  width: 100%;
 }
 
 .btn-half-black:hover {
