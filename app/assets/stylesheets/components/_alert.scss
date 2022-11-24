@@ -4,3 +4,22 @@
   right: 16px;
   z-index: 1000;
 }
+
+
+.width-btn{
+  width: 340px;
+  min-height: 40px;
+  margin: 10px 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  background-color: #7895B2;
+  color: white;
+  border-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.width-btn:hover{
+  background-color: #3181BD;
+  color: white;
+}
