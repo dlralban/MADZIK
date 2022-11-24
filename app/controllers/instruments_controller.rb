@@ -3,7 +3,28 @@ class InstrumentsController < ApplicationController
 
   def index
     @my_instruments = policy_scope(Instrument)
-    @instruments = Instrument.all.where.not(user: current_user)
+    # @instruments = Instrument.all.where.not(user: current_user)
+    # @instruments = Instrument.all
+    if params[:query].present?
+      @instruments = Instrument.where("name ILIKE ?", "%#{params[:query]}%")
+    else
+      @instruments = Instrument.all
+    end
+    @markers = @instruments.geocoded.map do |instrument|
+    {
+      lat: instrument.latitude,
+      lng: instrument.longitude,
+      info_window: render_to_string(partial: "info_window", locals:
+        {instrument: instrument})
+    }
+    end
+  end
+
+  def my_instruments
+    @my_instruments = policy_scope(Instrument)
+    @rentals = policy_scope(Rental)
+    @my_rentals = Rental.where(instrument: @my_instruments)
+    authorize @my_instruments
   end
 
   def show

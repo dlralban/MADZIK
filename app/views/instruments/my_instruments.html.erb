@@ -1,0 +1,96 @@
+<div class="grid-center">
+  <h2>My rents</h2>
+  <div class="grid">
+    <% @rentals.each do |rental| %>
+      <% instrument = Instrument.find(rental.instrument_id)  %>
+      <div class="card">
+        <%= cl_image_tag instrument.photo.key, height: 300, width: 400, :crop => "pad" %>
+        <div class="card-infos">
+          <div>
+            <h2> <%= instrument.name %></h2>
+            <div class="text-card">
+              <p>
+                <b><%= ((rental.end_date - rental.start_date)/(60*60*24)).to_i %> days left</b>
+                <br>
+                From : <%= rental.start_date.strftime('%a %d %b %Y') %>
+                <br>
+                Until : <%= rental.end_date.strftime('%a %d %b %Y') %>
+              </p>
+              <p><%= rental.status %></p>
+            </div>
+            <%= button_to "Cancel", rental, method: :delete, class:"mt-3 btn btn-danger text-white" if policy(rental).destroy? %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @my_rentals.count > 0%>
+    <h2>My instruments rented</h2>
+    <div class="grid">
+      <% @my_rentals.each do |rental| %>
+        <% instrument = Instrument.find(rental.instrument_id)  %>
+        <div class="card">
+          <%= cl_image_tag instrument.photo.key, height: 300, width: 400, :crop => "pad" %>
+          <div class="card-infos">
+            <div>
+              <h2> <%= instrument.name %></h2>
+              <div class="text-card">
+                <p>
+                  <b><%= ((rental.end_date - rental.start_date)/(60*60*24)).to_i %> days left</b>
+                  <br>
+                  From : <%= rental.start_date.strftime('%a %d %b %Y') %>
+                  <br>
+                  Until : <%= rental.end_date.strftime('%a %d %b %Y') %>
+                </p>
+                <p><%= rental.status %></p>
+              </div>
+
+              <% if rental.status == 'pending' %>
+              <div class="d-flex justify-content-between">
+                <%= simple_form_for(rental) do |f| %>
+                  <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" }%>
+                  <%= f.submit "Approve", class: "btn btn-success"%>
+                <% end %>
+
+                <%= simple_form_for(rental) do |f| %>
+                  <%= f.input :status, :as => :hidden, :input_html => { :value => "declined" }%>
+                  <%= f.submit "Decline", class: "btn btn-danger text-white"%>
+                <% end %>
+              </div>
+
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  <% end %>
+
+  <% if user_signed_in? && @my_instruments.count > 0 %>
+
+  <h2>My instruments</h2>
+  <div class="grid">
+    <% @my_instruments.each do |instrument| %>
+      <%= link_to instrument_path(instrument) do %>
+        <div class="card">
+          <% if instrument.photo != nil %>
+            <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill %>
+          <% end %>
+          <div class="card-infos">
+            <div>
+              <h2><%= instrument.name%></h2>
+              <div class="text-card">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse  rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect rem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectrem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lect lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor</p>
+              </div><br>
+              <h2 class="card-pricing">€<%= instrument.price %></h2>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% end %>
+</div>

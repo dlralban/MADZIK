@@ -2,11 +2,9 @@
   justify-content: space-between;
   background: white;
   transition: 0.5s background-color ease;
-
 }
 
 .navbar-transparent {
-
   opacity: 0.8;
 }
 .navbar-lewagon .navbar-collapse {
@@ -14,35 +12,36 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 70px;
+  width: 60px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
 }
 
 .btn-ghost {
-  color: #a61818;
-  border: 2px solid #a61818;
-  padding: 8px 24px;
-  border-radius: 50px;
+  padding: 8px 12px;
+  border-radius: 10px;
   font-weight: lighter;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
   margin-right: 18px;
   margin-top: 8px;
-
 }
 
 .btn-ghost:hover {
-  opacity: 1;
-  background-color: #a61818;
-  color: white;
+  background-color: #3181BD;
+  color: white !important;
 }
+
 
 .navbar-log-out {
   margin-top: 15x;
 }
 
 .navbar {
+  margin-bottom: 20px;
   position:sticky;
   top: 0;
   z-index: 20000;
-
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }

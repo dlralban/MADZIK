@@ -3,7 +3,9 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 6px;
-  margin: 10px auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 30px;
   overflow: hidden;
   width: 215px;
   height: 385px;
@@ -37,9 +39,27 @@ h2 {
   margin: 0;
 }
 
-
 .text-card {
   height: 110px;
   overflow: hidden;
   padding-bottom: 10px;
+}
+
+
+.accept-refuse-box {
+  box-sizing: border-box;
+  padding: 5px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  
+ }
+
+.card-half {
+  width: 60%;
+  margin: auto;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 6px;
+
 }

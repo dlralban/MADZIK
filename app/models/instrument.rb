@@ -7,4 +7,6 @@ class Instrument < ApplicationRecord
   validates :price, presence: true
 
   include InstrumentConcern
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end
