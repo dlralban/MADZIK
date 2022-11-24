@@ -14,8 +14,8 @@ class InstrumentsController < ApplicationController
     {
       lat: instrument.latitude,
       lng: instrument.longitude,
-      info_window: render_to_string(partial: "info_window", locals:
-        {instrument: instrument})
+      info_window: render_to_string(partial: "info_window", locals: {instrument: instrument}),
+      image_url: helpers.asset_url("guitar.png")
     }
     end
   end
