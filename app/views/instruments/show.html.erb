@@ -12,9 +12,9 @@
       <p class="main-card-text"><em>Owner: <%= @instrument.user.username %></em></p>
       <p class="main-card-text"><em>Address: <%= @instrument.address %></em></p><br>
       <div class="main-card-text-inline">
-        <h6 class="main-card-text" data-flatpickr-target="price" value='<%= @instrument.price %>'>Price : <%= @instrument.price %>€ / da</h6>
+        <h6 class="main-card-text" data-flatpickr-target="price" value='<%= @instrument.price %>'>Price : <%= @instrument.price %>€ / day &#8196</h6>
         <% if @instrument.user != current_user %>
-          <h6 class="main-card-text">y - <strong data-flatpickr-target="totalPrice" value='<%= @instrument.price%>' > Total price : <%= @instrument.price %>€</strong></h6>
+          <h6 class="main-card-text">-&#8196<strong data-flatpickr-target="totalPrice" value='<%= @instrument.price%>' >Total price : <%= @instrument.price %>€</strong></h6>
         <% end %>
       </div><br>
       <div class="main-card-text-inline">
