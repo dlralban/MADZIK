@@ -42,7 +42,7 @@ class RentalsController < ApplicationController
   def destroy
     authorize @rental
     @rental.destroy
-    redirect_to rentals_path, status: :see_other
+    redirect_to my_instruments_instruments_path, status: :see_other
   end
 
   private
