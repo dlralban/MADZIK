@@ -10,7 +10,7 @@
   </div>
 
   <div class="grid-center">
-    <div data-show-target="myRents" class="d-none">
+    <div data-show-target="myRents">
       <div class="grid">
         <% @rentals.each do |rental| %>
           <% instrument = Instrument.find(rental.instrument_id)  %>
