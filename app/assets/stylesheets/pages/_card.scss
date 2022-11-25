@@ -17,6 +17,10 @@
   object-fit: cover;
 }
 
+.card:hover {
+  opacity: 0.5;
+}
+
 h2 {
   font-size: 20px;
   font-weight: bold;
