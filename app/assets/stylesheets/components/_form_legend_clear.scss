@@ -8,3 +8,14 @@
 legend ~ div.form-check:first-of-type {
   clear: left;
 }
+
+.my_instruments{
+  h2{
+    opacity: 0.4;
+    transition: .5s;
+  }
+
+  h2:hover{
+    opacity: 1;
+  }
+}
